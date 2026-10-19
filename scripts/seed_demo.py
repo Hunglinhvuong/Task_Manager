@@ -15,24 +15,23 @@ import sys
 import config
 from core import auth, database
 
-DEFAULT_PASSWORD = "Demo@12345"
+DEFAULT_PASSWORD = "Mobifone@12345"
 
-MANAGER = ("truongphong", "Trần Quang Minh")
+MANAGER = ("dung.nviet", "Nguyễn Việt Dũng")
 
 STAFF = [
-    ("nv01", "Nguyễn Văn An"),
-    ("nv02", "Trần Thị Bình"),
-    ("nv03", "Lê Hoàng Cường"),
-    ("nv04", "Phạm Thị Dung"),
-    ("nv05", "Hoàng Văn Em"),
-    ("nv06", "Vũ Thị Phương"),
-    ("nv07", "Đặng Quốc Gia"),
-    ("nv08", "Bùi Thị Hà"),
-    ("nv09", "Đỗ Minh Hiếu"),
-    ("nv10", "Ngô Thị Lan"),
-    ("nv11", "Dương Văn Long"),
-    ("nv12", "Lý Thị Mai"),
-]
+    ("minh.anh", "Nguyễn Anh Minh"),
+    ("huyen.btn", "Bùi Thị Ngọc Huyền"),
+    ("hung.nguyenhuu", "Nguyễn Hữu Hưng"),
+    ("ngoc.hoang", "Hoàng Đức Ngọc"),
+    ("thong.nc", "Nguyễn Cảnh Thông"),
+    ("linh.tthithuy", "Trịnh Thị Thùy Linh"),
+    ("long.nhoang", "Nguyễn Hoàng Long"),
+    ("chien.hoangvan", "Hoàng Văn Chiến"),
+    ("phuc.doanhuu", "Doãn Hữu Phúc"),
+    ("hai.ndang", "Nguyễn Đăng Hải"),
+    ("vuong.vt", "Vũ Tiến Vượng"),
+    ]
 
 
 def main(argv=None) -> int:
