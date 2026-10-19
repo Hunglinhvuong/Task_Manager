@@ -1,0 +1,13 @@
+[server]
+headless = true
+# Mặc định chỉ lắng nghe trên máy chủ; nếu đặt sau nginx thì để 127.0.0.1.
+address = "127.0.0.1"
+port = 8501
+enableXsrfProtection = true
+maxUploadSize = 1
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"

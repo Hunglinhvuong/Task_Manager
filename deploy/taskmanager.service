@@ -1,0 +1,27 @@
+# /etc/systemd/system/taskmanager.service
+# Giả định: mã nguồn ở /opt/task_manager, môi trường ảo ở /opt/task_manager/.venv,
+# người dùng hệ thống "taskmgr" (được tạo bởi scripts/install_service.sh).
+[Unit]
+Description=Cong cu quan ly giao viec noi bo (Streamlit)
+After=network.target
+
+[Service]
+Type=simple
+User=taskmgr
+Group=taskmgr
+WorkingDirectory=/opt/task_manager
+Environment=TASKS_DB_PATH=/opt/task_manager/data/app.db
+EnvironmentFile=/opt/task_manager/.env
+ExecStart=/opt/task_manager/.venv/bin/streamlit run app.py --server.address=${STREAMLIT_SERVER_ADDRESS} --server.port=${STREAMLIT_SERVER_PORT}
+Restart=on-failure
+RestartSec=5
+UMask=0077
+# Hạn chế quyền
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/task_manager/data
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,2 @@
+# /etc/cron.d/taskmanager-backup  (chạy 02:00 mỗi ngày, giữ 30 bản gần nhất trong data/backups)
+0 2 * * * taskmgr cd /opt/task_manager && .venv/bin/python -m scripts.backup_db --keep 30 >> /opt/task_manager/data/backup.log 2>&1
