@@ -123,19 +123,21 @@ Quy tắc đáng chú ý:
 
 | Thao tác | Ai được làm | Khi nào |
 |---|---|---|
-| Cập nhật khối lượng đã hoàn thành (hoặc % nếu không có khối lượng giao) và báo cáo kết quả của phần việc | Chính thành viên đó | Đang thực hiện |
+| Cập nhật khối lượng đã hoàn thành (hoặc % nếu không có khối lượng giao) và báo cáo kết quả phần việc nhóm | Người chủ trì, cho mọi thành viên | Đang thực hiện |
+| Cập nhật phần việc của công việc cá nhân / giao trực tiếp | Chính người thực hiện | Đang thực hiện |
 | Nhận xét phần việc của thành viên | Người chủ trì của công việc đó, trưởng phòng | Đang thực hiện hoặc chờ đánh giá |
 | Báo cáo hoàn thành (công việc nhóm) | Người chủ trì | Đang thực hiện, khi mọi thành viên đã 100% và có báo cáo |
 | Đánh giá Đạt / Không đạt | Trưởng phòng | Đã báo cáo |
 | Mở lại công việc "Không đạt" | Trưởng phòng (bắt buộc ghi lý do) | Không đạt |
 
 Quy tắc đáng chú ý:
-- **Tiến độ tính theo khối lượng tuyệt đối.** Với phần việc có khối lượng giao, thành viên chỉ nhập *khối lượng đã hoàn thành* (ví dụ 12 trên tổng 20 trạm); chương trình tự tính tiến độ % = đã hoàn thành / được giao (12/20 = 60%) và hiển thị ngay khi nhập. Số liệu gốc (khối lượng đã hoàn thành) được lưu và ghi nhật ký.
+- **Tiến độ công việc nhóm do người chủ trì cập nhật thay cho các thành viên.** Trong chi tiết công việc, chủ trì nhập tiến độ và báo cáo kết quả riêng cho từng thành viên; thành viên không tự cập nhật phần việc nhóm. Với công việc cá nhân/giao trực tiếp, người thực hiện vẫn tự cập nhật phần việc của mình.
+- **Tiến độ tính theo khối lượng tuyệt đối.** Với phần việc có khối lượng giao, người có quyền cập nhật chỉ nhập *khối lượng đã hoàn thành* (ví dụ 12 trên tổng 20 trạm); chương trình tự tính tiến độ % = đã hoàn thành / được giao (12/20 = 60%) và hiển thị ngay khi nhập. Số liệu gốc (khối lượng đã hoàn thành) được lưu và ghi nhật ký.
   - Được nhập số thập phân. Được làm vượt khối lượng giao; tiến độ vẫn tối đa 100%.
   - Tiến độ chỉ là 100% khi đã làm đủ khối lượng giao; trước đó tối đa 99% (ví dụ 996/1000 là 99%, không làm tròn thành 100%).
   - Nếu người chủ trì hoặc trưởng phòng sửa khối lượng giao, tiến độ % tự tính lại theo khối lượng đã hoàn thành. Nếu bỏ khối lượng giao, phần việc chuyển sang nhập % trực tiếp và giữ nguyên % hiện có.
   - Phần việc **không có** khối lượng giao thì vẫn nhập tiến độ trực tiếp theo % (số nguyên 0-100).
-- Khi tiến độ đạt 100% bắt buộc có báo cáo kết quả. Thành viên được hạ khối lượng đã hoàn thành nếu cần làm lại.
+- Khi tiến độ đạt 100% bắt buộc có báo cáo kết quả. Người chủ trì được điều chỉnh tiến độ/báo cáo của thành viên nếu cần làm lại.
 - Công việc nhóm (TEAM): người chủ trì báo cáo hoàn thành kèm báo cáo tổng hợp. Chỉ báo cáo được khi **mọi** thành viên đã 100% và có báo cáo kết quả.
 - Công việc giao trực tiếp (DIRECT) chỉ giao cho **một người**, người đó là **chủ trì** và có đúng một phần việc. Hệ thống **tự động** chuyển sang "Đã báo cáo, chờ đánh giá" ngay khi người được giao hoàn thành (100% kèm báo cáo kết quả), không cần báo cáo tổng hợp riêng.
   - Không thêm/xóa người và không đổi người được giao (cần giao người khác thì tạo công việc mới). Trưởng phòng vẫn sửa được tên, mô tả, hạn, nội dung và khối lượng phần việc.
@@ -146,7 +148,7 @@ Quy tắc đáng chú ý:
 - Sau khi báo cáo, không ai đổi được tiến độ nữa; trưởng phòng và chủ trì vẫn nhận xét được.
 - Đánh giá "Không đạt" bắt buộc có nhận xét. "Đạt" có thể để trống nhận xét. Đánh giá không thể sửa; sai thì chỉ có cách "Không đạt" rồi mở lại.
 - Mở lại đưa công việc về "Đang thực hiện" và xóa kết quả đánh giá, báo cáo tổng hợp, thời điểm hoàn thành khỏi công việc. Mọi lần đánh giá và mở lại vẫn còn nguyên trong nhật ký. Với việc DIRECT sau khi mở lại, thành viên cập nhật hoặc gửi lại phần việc của mình để công việc tự báo cáo lần nữa.
-- Trang **Công việc của tôi**: phần việc của tôi (cập nhật tiến độ ngay tại đây), việc tôi chủ trì, việc tôi đề xuất còn ở bước nháp/chờ duyệt/bị từ chối. Trang **Phê duyệt** có hai tab: Chờ phê duyệt và Chờ đánh giá.
+- Trang **Công việc của tôi**: phần việc của tôi (cập nhật ngay tại đây nếu được quyền; với việc nhóm, tiến độ do chủ trì nhập ở chi tiết công việc), việc tôi chủ trì, việc tôi đề xuất còn ở bước nháp/chờ duyệt/bị từ chối. Trang **Phê duyệt** có hai tab: Chờ phê duyệt và Chờ đánh giá.
 - Người dùng khác vẫn xem được tiến độ, báo cáo, nhận xét và nhật ký của mọi công việc (STAFF xem tất cả công việc của phòng).
 
 ## 7b. Tổng quan và Báo cáo (Giai đoạn 4)

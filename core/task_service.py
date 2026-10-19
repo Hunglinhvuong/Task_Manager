@@ -657,7 +657,7 @@ def _all_parts_done(conn: sqlite3.Connection, task_id: int) -> Optional[str]:
 
 
 def update_progress(actor: dict, member_id: int, value: Any, result_report: Optional[str]) -> bool:
-    """Thành viên cập nhật tiến độ và báo cáo kết quả của chính phần việc của mình.
+    """Người chủ trì cập nhật phần việc của thành viên nhóm; người thực hiện cập nhật việc một người.
 
     - Phần việc CÓ khối lượng giao: `value` là khối lượng đã hoàn thành (số tuyệt đối, cùng đơn vị
       với khối lượng giao, được phép vượt). Chương trình tự tính tiến độ % = đã hoàn thành / được giao.
@@ -682,7 +682,7 @@ def update_progress(actor: dict, member_id: int, value: Any, result_report: Opti
         )
         permissions.require(
             permissions.can_update_progress(actor, task, member),
-            "Bạn chỉ được cập nhật tiến độ phần việc của chính mình.",
+            "Bạn không có quyền cập nhật tiến độ phần việc này.",
         )
 
         by_quantity = has_quantity(member["quantity"])

@@ -55,7 +55,7 @@ def _create_form(user: dict) -> None:
         else:
             st.caption(
                 "Công việc nhóm: lưu ở dạng bản nháp. Sau khi tạo, chủ trì phân phần việc cho thành viên "
-                "rồi gửi phê duyệt."
+                "rồi gửi phê duyệt; khi công việc bắt đầu, chủ trì cập nhật tiến độ thay cho các thành viên."
             )
 
         with st.form("create_task_form", clear_on_submit=True):

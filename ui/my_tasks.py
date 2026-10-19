@@ -4,7 +4,7 @@ from __future__ import annotations
 import streamlit as st
 
 import config
-from core import task_service
+from core import permissions, task_service
 from ui import components as c
 from ui import task_detail
 
@@ -37,7 +37,10 @@ def _render_parts(user: dict, parts: list) -> None:
             if part["status"] == config.STATUS_IN_PROGRESS:
                 task = task_service.get_task(part["task_id"])
                 member = next(m for m in task["members"] if m["id"] == part["member_id"])
-                task_detail.render_progress_form(user, task, member, "my")
+                if permissions.can_update_progress(user, task, member):
+                    task_detail.render_progress_form(user, task, member, "my")
+                elif task["task_type"] == config.TYPE_TEAM:
+                    st.caption("Người chủ trì cập nhật tiến độ phần việc nhóm tại chi tiết công việc.")
             else:
                 st.caption("Công việc đã báo cáo hoàn thành, đang chờ đánh giá; không cập nhật tiến độ được nữa.")
 

@@ -46,7 +46,7 @@ def _members_table(task: dict) -> None:
 
 
 def render_progress_form(user: dict, task: dict, member: dict, key_prefix: str) -> None:
-    """Thành viên cập nhật phần việc của chính mình.
+    """Nhập tiến độ phần việc theo quyền của công việc.
 
     Phần việc có khối lượng giao: nhập khối lượng đã hoàn thành (số tuyệt đối), chương trình tự
     tính tiến độ %. Phần việc không có khối lượng giao: nhập tiến độ % trực tiếp.
@@ -363,10 +363,21 @@ def _comment_form(user: dict, task: dict) -> None:
 def _allocation_tab(user: dict, task: dict) -> None:
     _members_table(task)
 
-    mine = next((m for m in task["members"] if m["user_id"] == user["id"]), None)
-    if mine and permissions.can_update_progress(user, task, mine):
-        with st.expander("Cập nhật tiến độ phần việc của tôi", expanded=True):
-            render_progress_form(user, task, mine, "detail")
+    if task["task_type"] == config.TYPE_TEAM:
+        updatable = [
+            member for member in task["members"]
+            if permissions.can_update_progress(user, task, member)
+        ]
+        if updatable:
+            with st.expander("Cập nhật tiến độ thành viên", expanded=True):
+                for member in updatable:
+                    st.markdown(f"**{member['full_name']} · {member['content']}**")
+                    render_progress_form(user, task, member, "detail")
+    else:
+        mine = next((m for m in task["members"] if m["user_id"] == user["id"]), None)
+        if mine and permissions.can_update_progress(user, task, mine):
+            with st.expander("Cập nhật tiến độ phần việc của tôi", expanded=True):
+                render_progress_form(user, task, mine, "detail")
     if task["members"] and permissions.can_comment_member(user, task):
         _comment_form(user, task)
 

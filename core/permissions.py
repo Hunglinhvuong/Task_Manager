@@ -112,12 +112,12 @@ def can_edit_allocation(user: Optional[dict], task) -> bool:
 
 # --- Giai đoạn 3: tiến độ, nhận xét, báo cáo, đánh giá --------------------
 def can_update_progress(user: Optional[dict], task, member) -> bool:
-    """Chỉ chính thành viên đó, khi công việc đang thực hiện."""
-    return (
-        _is_manager_or_staff(user)
-        and task["status"] == config.STATUS_IN_PROGRESS
-        and member["user_id"] == user["id"]
-    )
+    """Việc nhóm: chủ trì cập nhật mọi thành viên; việc một người: người thực hiện tự cập nhật."""
+    if not (_is_manager_or_staff(user) and task["status"] == config.STATUS_IN_PROGRESS):
+        return False
+    if task["task_type"] == config.TYPE_TEAM:
+        return is_lead(user, task)
+    return task["task_type"] in config.SINGLE_ASSIGNEE_TASK_TYPES and member["user_id"] == user["id"]
 
 
 def can_comment_member(user: Optional[dict], task) -> bool:
